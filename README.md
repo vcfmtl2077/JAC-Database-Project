@@ -15,6 +15,7 @@ List all information related with students.
 - List a specific student and his total course credit info.
 
 ## Professors Data Scenarios
+List all information related with professors.
 
 - List all professors info in a specific department.
 - List total professor number of each department.
@@ -22,6 +23,7 @@ List all information related with students.
 - List a specific professor and his total courses hours info.
 
 ## Courses & Grades Data Scenarios
+List all information related with courses and grades.
 
 - List highest and lowest grade of each course.
 - Find course with its total registration count.
