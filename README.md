@@ -2,17 +2,85 @@
 
 Data Tables: 
 
-Students, Professors, Courses, Departments, Registrations, Grades
+Students, Professors, Courses, Departments, Registrations, Enrollments(Grade),Semesters.
 
 ## Students Data Scenarios
 
 List all information related with students.
 
 - List all students info in a specific department.
+``` 
+SELECT
+    s.student_id,
+    s.first_name,
+    s.last_name,
+    s.date_of_birth,
+    s.email,
+    d.department_name
+FROM
+    UMS.Students s
+    JOIN UMS.Enrollments e ON s.student_id = e.student_id
+    JOIN UMS.Departments d ON e.department_id = d.department_id
+WHERE
+    e.department_id = 1;
+  ```
 - List total number of enrolled students for each department.
+``` 
+SELECT
+    d.department_name,
+    COUNT(e.student_id)
+FROM
+    UMS.Enrollments e
+    JOIN UMS.Departments d ON e.department_id = d.department_id
+GROUP by
+    e.department_id;
+  ```  
 - List a specific student and his enrollment info.
+``` 
+SELECT
+    *
+FROM
+    Students s
+    JOIN UMS.Enrollments e ON s.student_id = e.student_id
+WHERE
+    s.student_id = 2;
+  ```  
+
 - List a specific student and his course registration info.
-- List a specific student and his total course credit info.
+```
+SELECT
+    s.student_id,
+    s.first_name,
+    s.last_name,
+    c.course_name,
+    c.credit,
+    c.hours,
+    se.`year`,
+    se.semester
+FROM
+    Students s
+    JOIN UMS.Registrations r ON s.student_id = r.student_id
+    JOIN UMS.Courses c ON r.course_id = c.course_id
+    JOIN UMS.Semesters se ON se.semester_id = r.semester_id
+WHERE
+    s.student_id = 2;
+```
+
+- List a specific student and his total registered course credit info.
+```
+SELECT
+    s.student_id,
+    s.first_name,
+    s.last_name,
+    SUM(c.credit),
+    SUM(c.hours)
+FROM
+    Students s
+    JOIN UMS.Registrations r ON s.student_id = r.student_id
+    JOIN UMS.Courses c ON r.course_id = c.course_id
+WHERE
+    s.student_id = 2;
+```
 
 ## Professors Data Scenarios
 List all information related with professors.
