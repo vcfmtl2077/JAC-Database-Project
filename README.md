@@ -86,9 +86,63 @@ WHERE
 List all information related with professors.
 
 - List all professors info in a specific department.
+```
+SELECT
+    p.professor_id,
+    p.first_name,
+    p.last_name,
+    p.email,
+    p.date_of_birth,
+    d.department_name
+FROM
+    UMS.Professors p
+    JOIN UMS.Departments d ON p.department_id = d.department_id
+WHERE
+    p.department_id = 3;
+```
+
 - List total professor number of each department.
+```
+SELECT
+    d.department_name,
+    COUNT(p.professor_id)
+FROM
+    UMS.Professors p
+    JOIN UMS.Departments d ON p.department_id = d.department_id
+GROUP BY
+    p.department_id;
+```
 - List a specific professor and his courses info.
+```
+SELECT
+    p.professor_id,
+    p.first_name,
+    p.last_name,
+    p.email,
+    c.course_name,
+    c.credit,
+    c.hours
+FROM
+    UMS.Professors p
+    JOIN UMS.Courses c ON p.professor_id = c.professor_id
+WHERE
+    p.professor_id = 3;
+```
 - List a specific professor and his total courses hours info.
+```
+SELECT
+    p.professor_id,
+    p.first_name,
+    p.last_name,
+    p.email,
+    SUM(c.credit),
+    SUM(c.hours)
+FROM
+    UMS.Professors p
+    JOIN UMS.Courses c ON p.professor_id = c.professor_id
+WHERE
+    p.professor_id = 3;
+```
 
 ## Courses & Grades Data Scenarios
 List all information related with courses and grades.
