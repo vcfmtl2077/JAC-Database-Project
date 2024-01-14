@@ -148,7 +148,63 @@ WHERE
 List all information related with courses and grades.
 
 - List highest and lowest grade of each course.
+```
+SELECT
+    c.course_name,
+    MIN(e.grade),
+    MAX(e.grade)
+FROM
+    UMS.Registrations r
+    JOIN UMS.Courses c ON c.course_id = r.course_id
+    JOIN UMS.Enrollments e ON e.student_id = r.student_id
+GROUP BY
+    r.course_id;
+```
 - Find course with its total registration count.
+```
+SELECT
+    c.course_name,
+    COUNT(r.student_id)
+FROM
+    UMS.Registrations r
+    JOIN UMS.Courses c ON c.course_id = r.course_id
+    JOIN UMS.Enrollments e ON e.student_id = r.student_id
+GROUP BY
+    r.course_id;
+```
 - Find course with its total registration count for each department.
-- List each total count of grade of each course for each department(the total students of each department).
-- List each total count of grade of each department for each course.
+```
+SELECT
+    d.department_name,
+    c.course_name,
+    COUNT(r.registration_id)
+FROM
+    UMS.Courses c
+    JOIN UMS.Professors p ON p.professor_id = c.professor_id
+    JOIN UMS.Departments d ON d.department_id = c.professor_id
+    JOIN UMS.Registrations r ON r.course_id = c.course_id
+GROUP BY
+    d.department_id,
+    c.course_name;
+```
+- List total student registration count by grade for each course group each department.
+```
+SELECT
+    d.department_name,
+    c.course_name,
+    p.first_name,
+    p.last_name ,
+    COUNT(r.registration_id),
+    e.grade
+FROM
+    UMS.Courses c
+    JOIN UMS.Professors p ON p.professor_id = c.course_id
+    JOIN UMS.Departments d ON d.department_id = p.department_id
+    JOIN UMS.Registrations r ON r.course_id = c.course_id
+    JOIN UMS.Enrollments e ON e.student_id = r.student_id
+GROUP BY
+    d.department_id,
+    c.course_id,
+    e.grade;
+```
+
