@@ -28,5 +28,5 @@ List all information related with courses and grades.
 - List highest and lowest grade of each course.
 - Find course with its total registration count.
 - Find course with its total registration count for each department.
-- List anverage grade of each course for each department(the total students of each department).
-- List anverage grade of each department for each course.
+- List each total count of grade of each course for each department(the total students of each department).
+- List each total count of grade of each department for each course.
