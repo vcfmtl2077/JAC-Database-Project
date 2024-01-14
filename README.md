@@ -30,3 +30,7 @@ List all information related with courses and grades.
 - Find course with its total registration count for each department.
 - List each total count of grade of each course for each department(the total students of each department).
 - List each total count of grade of each department for each course.
+
+## Notice when create tables
+Create all tables first and then add foreign key and other constrain, it will avoid error to run SQL script.
+If using ENUM, there is no VARCHAR().
