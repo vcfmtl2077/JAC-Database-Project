@@ -1,4 +1,4 @@
-/***/
+-- List all students info in a specific department.
 SELECT
     s.student_id,
     s.first_name,
@@ -13,7 +13,7 @@ FROM
 WHERE
     e.department_id = 1;
 
-/***/
+-- List total number of enrolled students for each department.
 SELECT
     d.department_name,
     COUNT(e.student_id)
@@ -23,7 +23,7 @@ FROM
 GROUP by
     e.department_id;
 
-/***/
+-- List a specific student and his enrollment info.
 SELECT
     *
 FROM
@@ -32,7 +32,7 @@ FROM
 WHERE
     s.student_id = 2;
 
-/***/
+-- List a specific student and his course registration info.
 SELECT
     s.student_id,
     s.first_name,
@@ -50,7 +50,7 @@ FROM
 WHERE
     s.student_id = 2;
 
-/***/
+-- List a specific student and his total registered course credit info.
 SELECT
     s.student_id,
     s.first_name,
@@ -64,7 +64,7 @@ FROM
 WHERE
     s.student_id = 2;
 
-/***/
+-- List all information related with professors.
 SELECT
     p.professor_id,
     p.first_name,
@@ -78,7 +78,7 @@ FROM
 WHERE
     p.department_id = 3;
 
-/***/
+-- List total professor number of each department.
 SELECT
     d.department_name,
     COUNT(p.professor_id)
@@ -88,7 +88,7 @@ FROM
 GROUP BY
     p.department_id;
 
-/***/
+-- List a specific professor and his courses info.
 SELECT
     p.professor_id,
     p.first_name,
@@ -103,7 +103,7 @@ FROM
 WHERE
     p.professor_id = 3;
 
-/***/
+-- List a specific professor and his total courses hours info.
 SELECT
     p.professor_id,
     p.first_name,
@@ -117,7 +117,7 @@ FROM
 WHERE
     p.professor_id = 3;
 
-/***/
+-- List highest and lowest grade of each course.
 SELECT
     c.course_name,
     MIN(e.grade),
@@ -129,7 +129,7 @@ FROM
 GROUP BY
     r.course_id;
 
-/***/
+-- Find course with its total registration count.
 SELECT
     c.course_name,
     COUNT(r.student_id)
@@ -140,7 +140,7 @@ FROM
 GROUP BY
     r.course_id;
 
-/***/
+-- Find course with its total registration count for each department.
 SELECT
     d.department_name,
     c.course_name,
@@ -154,7 +154,7 @@ GROUP BY
     d.department_id,
     c.course_name;
 
-/***/
+-- List total student registration count by grade for each course group each department.
 SELECT
     d.department_name,
     c.course_name,
