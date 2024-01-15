@@ -210,3 +210,34 @@ GROUP BY
     e.grade;
 ```
 
+## Security Measures
+Associated with the application are developer and administrator accounts that create and maintain the application.
+
+Developers need full access to the database. Some users only need read permissions, and some users need read/write permissions.
+
+To clearly distinguish a role's permissions, create the role as the name of the required permission set. User accounts can easily be granted the required permissions by authorizing the appropriate roles.
+
+To create a role, use CREATE ROLE, then to assign permissions to a role, use the same syntax as assigning permissions to a user:
+
+```
+-- create roles
+CREATE ROLE 'app_developer', 'app_read', 'app_write';
+
+-- grant privilege to role
+GRANT ALL ON UMS.* TO 'app_developer';  
+GRANT SELECT ON UMS.* TO 'app_read';  
+GRANT INSERT, UPDATE, DELETE ON UMS.* TO 'app_write';
+
+-- create users and grant privilege to users
+CREATE USER 'dev1'@'localhost' IDENTIFIED BY 'dev1pass';  
+CREATE USER 'read_user1'@'localhost' IDENTIFIED BY 'read_user1pass';  
+CREATE USER 'read_user2'@'localhost' IDENTIFIED BY 'read_user2pass';  
+CREATE USER 'rw_user1'@'localhost' IDENTIFIED BY 'rw_user1pass';
+
+GRANT 'app_developer' TO 'dev1'@'localhost';  
+GRANT 'app_read' TO 'read_user1'@'localhost', 'read_user2'@'localhost';  
+GRANT 'app_read', 'app_write' TO 'rw_user1'@'localhost';
+
+```
+
+
