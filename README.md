@@ -1,8 +1,10 @@
 # JAC-Database-Project
 
 Data Tables: 
+Students, Professors, Courses, Departments, Registrations, Enrollments(Grade),Semesters. 
 
-Students, Professors, Courses, Departments, Registrations, Enrollments(Grade),Semesters.
+
+![Entity-Relation Diagram](https://raw.githubusercontent.com/vcfmtl2077/JAC-Database-Project/main/ERD.png)
 
 ## Students Data Scenarios
 
